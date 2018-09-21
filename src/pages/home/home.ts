@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ListPage } from '../list/list'
-
+import { RestaurantsProvider } from '../../providers/restaurants/restaurants';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -10,8 +10,11 @@ export class HomePage {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
+  response: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _service: RestaurantsProvider ) {
+    this.response = _service.getRestaurantByLatLong(13.082680,80.270721);
+
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 

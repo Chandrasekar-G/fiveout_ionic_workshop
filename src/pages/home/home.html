@@ -1,24 +1,24 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>List</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content>
-    <ion-list>
-      <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-        <ion-icon [name]="item.icon" item-start></ion-icon>
-        {{item.title}}
-        <div class="item-note" item-end>
-          {{item.note}}
-        </div>
-      </button>
-    </ion-list>
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title}}</b>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+  <div cards>
+    <div class="grid-full">
+      <ion-row>
+        <ion-col *ngFor="let item of response.nearby_restaurants" (click)="itemTapped($event, item)">
+          <ion-card>
+            <img src="{{item.restaurant.thumb}}" />
+            <div class="card-title">{{item.restaurant.name}}</div>
+            <div class="card-subtitle">{{item.restaurant.cuisines}}</div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
     </div>
-  </ion-content>
-  
+  </div>    
+</ion-content>
